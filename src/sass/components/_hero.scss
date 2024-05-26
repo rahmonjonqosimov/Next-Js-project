@@ -1,0 +1,19 @@
+.home__hero {
+  background: url(../../assets/images/hero-image.png);
+  background-position: center;
+  background-size: cover;
+  height: 653px;
+  .hero__content {
+    padding-top: 30%;
+    .hero__title {
+      font-family: Poppins;
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 96px;
+      letter-spacing: 0.5px;
+      text-align: left;
+      color: #fff;
+      max-width: 570px;
+    }
+  }
+}
