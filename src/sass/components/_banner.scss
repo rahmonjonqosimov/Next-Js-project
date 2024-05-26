@@ -1,0 +1,38 @@
+.banner {
+  background: #40bfff;
+  margin: 90px 0;
+  .banner__content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    .banner__text {
+      .banner__title {
+        font-family: Poppins;
+        font-size: 55px;
+        font-weight: 500;
+        line-height: 82.5px;
+        text-align: left;
+        color: #fff;
+      }
+      .banner__desc {
+        font-family: Poppins;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 36px;
+        text-align: left;
+        color: #fff;
+        margin: 23px 0 8px;
+      }
+      a {
+        font-family: Poppins;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 30px;
+        text-align: left;
+        color: #fff;
+        text-decoration: underline;
+      }
+    }
+  }
+}

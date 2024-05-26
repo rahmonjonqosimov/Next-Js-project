@@ -1,14 +1,16 @@
 import React from "react";
 import { getData } from "@/fetch";
-import Image from "next/image";
+import SingleRoute from "@/components/single-route/SingleRoute";
+import Products from "@/components/products/Products";
 
 const Detail = async ({ params: { id } }) => {
   const data = await getData(`/products/${id}`);
-  console.log(data);
+  const products = await getData(`/products?limit=4`);
   return (
-    <div>
-      <Image alt={data.title} src={data.image} width={200} height={200} />
-    </div>
+    <>
+      <SingleRoute data={data} />
+      <Products data={products} />
+    </>
   );
 };
 

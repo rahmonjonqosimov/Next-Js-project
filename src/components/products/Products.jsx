@@ -54,6 +54,7 @@ const Products = ({ data }) => {
   return (
     <section className="product">
       <div className="container">
+        <h2 className="title">BEST SELLER</h2>
         <div className="product__wrapper">{product}</div>
       </div>
     </section>
