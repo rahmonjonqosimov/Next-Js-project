@@ -15,20 +15,15 @@ import { FaRegUser } from "react-icons/fa";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [menu, setMenu] = useState(false);
   const [shrink, setShrink] = useState(false);
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 100) {
-      setShrink(true);
-    } else {
-      setShrink(false);
-    }
-  });
-
-  menu
-    ? (document.querySelector("body").style.overflow = "hidden")
-    : (document.querySelector("body").style.overflow = "auto");
+  // window.addEventListener("scroll", () => {
+  //   if (window.scrollY > 100) {
+  //     setShrink(true);
+  //   } else {
+  //     setShrink(false);
+  //   }
+  // });
 
   const navItems = [
     {
@@ -78,15 +73,7 @@ const Navbar = () => {
           <Link href={"/"}>
             <Image alt="Logo" width={134} height={44} src={logo} />
           </Link>
-          <ul className={`nav__links ${menu ? "show" : ""}`}>{navLinks}</ul>
-          <div
-            onClick={() => setMenu((p) => !p)}
-            className={`menu ${menu ? "show" : ""}`}
-          >
-            <div className="menu__item"></div>
-            <div className="menu__item"></div>
-            <div className="menu__item"></div>
-          </div>
+          <ul className={`nav__links`}>{navLinks}</ul>
         </nav>
 
         <div className={`navbar ${shrink ? "shrink" : ""} `}>
