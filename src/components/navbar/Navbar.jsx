@@ -12,6 +12,9 @@ import {
 } from "react-icons/io5";
 import { MdOutlineLocalOffer } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
+import { GoSearch } from "react-icons/go";
+import { IoMdNotificationsOutline } from "react-icons/io";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -68,6 +71,39 @@ const Navbar = () => {
   ));
   return (
     <section className="header">
+      <div className="top__navbar">
+        <div className="container">
+          <div className="header__top">
+            <div className="selects">
+              <select name="" id="">
+                <option value="eng">EN</option>
+                <option value="uzb">UZ</option>
+                <option value="rus">RU</option>
+              </select>
+              <select name="" id="">
+                <option value="eng">USD</option>
+                <option value="uzb">SUM</option>
+              </select>
+            </div>
+            <div className="links">
+              <Link href={"/login"}>
+                <AiOutlineUser />
+              </Link>
+              <Link className="count__item" href={"/login"}>
+                <IoHeartOutline />
+                <sup>0</sup>
+              </Link>
+              <Link className="count__item" href={"/login"}>
+                <IoCartOutline />
+                <sup>0</sup>
+              </Link>
+              <Link href={"/login"}>
+                <GoSearch />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <nav className={`nav ${shrink ? "shrink" : ""} `}>
           <Link href={"/"}>
@@ -82,11 +118,12 @@ const Navbar = () => {
             <IoSearch className="serach__icon" />
           </div>
           <div className="nav__links">
-            <Link href={`/wishes`}>
+            <Link className="count__item" href={`/wishes`}>
               <IoHeartOutline />
+              <sup>0</sup>
             </Link>
-            <Link href={`/cart`}>
-              <IoCartOutline />
+            <Link href={`/notification`}>
+              <IoMdNotificationsOutline />
             </Link>
           </div>
         </div>
@@ -99,9 +136,10 @@ const Navbar = () => {
             <IoSearch />
             <span>Explore</span>
           </Link>
-          <Link href={"/cart"}>
+          <Link className="count__item" href={"/cart"}>
             <IoCartOutline />
             <span>Cart</span>
+            <sup>0</sup>
           </Link>
           <Link href={"/offer"}>
             <MdOutlineLocalOffer />

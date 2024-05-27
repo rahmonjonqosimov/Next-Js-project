@@ -1,11 +1,49 @@
 .header {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   background: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+  .top__navbar {
+    border-bottom: 1px solid #eee;
+    .header__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      .selects {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        select {
+          border: none;
+          outline: none;
+          font-family: Poppins;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 24.36px;
+          text-align: left;
+          color: #262626;
+          option {
+            font-family: Poppins;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24.36px;
+            text-align: left;
+            color: #262626;
+          }
+        }
+      }
+      .links {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        a {
+          svg {
+            color: #262626;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
   .nav {
     display: flex;
     align-items: center;
@@ -60,13 +98,21 @@
     padding: 6px 0;
   }
   @media screen and (max-width: 800px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    .top__navbar {
+      display: none;
+    }
     .nav {
       display: none;
     }
     .navbar {
       display: flex;
       gap: 20px;
-      padding: 20px 0;
+      padding: 10px 0;
       transition: 0.2s;
       .serach__input {
         flex: 1;

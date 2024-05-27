@@ -19,9 +19,6 @@
   src: url(../assets/fonts/proximanova_regular.ttf);
 }
 
-body {
-  padding-top: 98px;
-}
 @media screen and (max-width: 800px) {
   body {
     padding-top: 88px;
@@ -54,4 +51,22 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #6cc4f0;
+}
+
+.count__item {
+  position: relative;
+}
+.count__item sup {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 14px;
+  height: 14px;
+  background: #40bfff;
+  border-radius: 50%;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  line-height: 14px;
+  font-weight: 500;
 }
