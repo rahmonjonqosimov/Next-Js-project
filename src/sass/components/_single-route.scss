@@ -189,6 +189,8 @@
             align-items: center;
             gap: 10px;
             justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
             .product__count {
               width: 120px;
               display: grid;
@@ -213,7 +215,6 @@
               display: flex;
               height: 48px;
               gap: 17px;
-              margin: 20px 0;
               button {
                 padding: 15px 20px;
                 font-size: 16px;
@@ -349,6 +350,98 @@
             text-align: left;
             color: #c1c8ce;
             text-decoration: line-through;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1280px) {
+    .detail__content {
+      align-items: center;
+      justify-content: center;
+      .detail__right {
+        display: none;
+      }
+    }
+  }
+  @media screen and (max-width: 950px) {
+    .path {
+      background: #f6f7f8;
+      text-align: center;
+      padding: 15px;
+      margin-bottom: 40px;
+      .url {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        a {
+          font-family: Poppins;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 18px;
+          text-align: left;
+          color: #33a0ff;
+        }
+        p {
+          font-family: Poppins;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 18px;
+          text-align: left;
+          width: 180px;
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+        }
+      }
+    }
+    .detail__content {
+      .detali___left {
+        .detail__top {
+          flex-direction: column;
+          align-items: center;
+          .detail__images {
+            .product__image {
+              border: none;
+            }
+            .images__wrapper {
+              display: none;
+            }
+          }
+          .detail__about {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .detail__content .detali___left .detail__bottom ul {
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .detali___left .detail__top .detail__about .set button {
+      span {
+        display: none;
+      }
+      svg {
+        font-size: 24px;
+      }
+    }
+    .detail__content {
+      .detali___left {
+        .detail__top {
+          .detail__images {
+            .product__image {
+              img {
+                width: 300px;
+                height: 250px;
+              }
+            }
           }
         }
       }

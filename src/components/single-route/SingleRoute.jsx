@@ -18,7 +18,7 @@ const SingleRoute = ({ data }) => {
           <div className="url">
             <Link href={"/"}>Home / </Link>
             <Link href={`/product/${data?.id}`}>Hot Deal / </Link>
-            <p>{data?.title}</p>
+            <p title={data?.title}>{data?.title}</p>
           </div>
         </div>
         <div className="container">

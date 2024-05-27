@@ -18,3 +18,40 @@
   font-family: Proxima Nova;
   src: url(../assets/fonts/proximanova_regular.ttf);
 }
+
+body {
+  padding-top: 98px;
+}
+@media screen and (max-width: 800px) {
+  body {
+    padding-top: 88px;
+    padding-bottom: 51px;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 10px;
+  cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset -2px 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #40bfff;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:active {
+  cursor: pointer;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6cc4f0;
+}

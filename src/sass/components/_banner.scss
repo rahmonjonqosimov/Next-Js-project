@@ -35,4 +35,39 @@
       }
     }
   }
+  @media screen and (max-width: 1000px) {
+    .banner__content {
+      flex-direction: column-reverse;
+      padding-bottom: 30px;
+      .banner__text {
+        .banner__title {
+          //styleName: Heading/H2;
+          font-family: Poppins;
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 36px;
+          letter-spacing: 0.5px;
+          text-align: center;
+        }
+        .banner__desc {
+          //styleName: Body Text/NormalRegular;
+          font-family: Poppins;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 21.6px;
+          letter-spacing: 0.5px;
+          text-align: center;
+          margin-top: 8px;
+        }
+        a {
+          font-size: 16px;
+        }
+      }
+      img {
+        width: 100%;
+        object-fit: contain;
+        height: auto;
+      }
+    }
+  }
 }
