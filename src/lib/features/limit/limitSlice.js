@@ -1,16 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit/dist";
+import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
   value: 1,
 };
+
 export const limitSlice = createSlice({
-  name: "limit",
+  name: "counter",
   initialState,
   reducers: {
-    limitAdd: (state) => {
-      state.value += 1;
+    incLimit: (state, actions) => {
+      state.value += actions.payload;
     },
   },
 });
 
-export const { limitAdd } = limitSlice.actions;
+// Action creators are generated for each case reducer function
+export const { incLimit } = limitSlice.actions;
+
 export default limitSlice.reducer;

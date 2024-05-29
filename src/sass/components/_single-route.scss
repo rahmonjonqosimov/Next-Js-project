@@ -206,6 +206,13 @@
                 font-size: 20px;
                 cursor: pointer;
                 padding: 8px 11px;
+                &:disabled {
+                  opacity: 0.5;
+                  color: #22262a;
+                  svg {
+                    color: #22262a !important;
+                  }
+                }
               }
               span {
                 color: #22262a;
@@ -228,12 +235,12 @@
                 border-radius: 4px;
                 cursor: pointer;
                 transition: 0.2s;
-                &:active {
-                  transform: scale(0.96);
-                }
                 svg {
                   font-size: 20px;
                   color: #33a0ff;
+                }
+                &:active {
+                  transform: scale(0.96);
                 }
               }
             }

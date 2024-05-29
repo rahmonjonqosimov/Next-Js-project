@@ -7,10 +7,22 @@ import color1 from "@/assets/images/color-1.svg";
 import color2 from "@/assets/images/color-2.svg";
 import color3 from "@/assets/images/color-3.svg";
 import color4 from "@/assets/images/color-4.svg";
-import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
+import { IoCartOutline, IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleHeart } from "@/lib/features/heart/heartSlice";
+import {
+  addToCart,
+  decrementCart,
+  incrementCart,
+  removeFromCart,
+} from "@/lib/features/cart/cartSlice";
 
 const SingleRoute = ({ data }) => {
+  const wishes = useSelector((s) => s.heart.value);
+  const cart = useSelector((s) => s.cart.value);
+  const dispatch = useDispatch();
+  const [item] = cart.filter((el) => el.id == data.id);
   return (
     <>
       <section className="detail">
@@ -118,17 +130,47 @@ const SingleRoute = ({ data }) => {
                   </div>
                   <div className="line"></div>
                   <div className="add__to__cart">
-                    <div className="product__count">
-                      <button>-</button>
-                      <span>2</span>
-                      <button>+</button>
-                    </div>
+                    {cart.some((el) => el.id == data.id) ? (
+                      <div className="product__count">
+                        <button
+                          disabled={
+                            item?.quantity ? +item?.quantity <= 1 : false
+                          }
+                          onClick={() => dispatch(decrementCart(data))}
+                        >
+                          -
+                        </button>
+                        <span>{item?.quantity}</span>
+                        <button
+                          disabled={
+                            item?.quantity ? +item?.quantity >= 10 : false
+                          }
+                          onClick={() => dispatch(incrementCart(data))}
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+
                     <div className="cart__wishes">
-                      <button>
-                        <IoCartOutline /> Add To Cart
-                      </button>
-                      <button>
-                        <IoHeartOutline />
+                      {cart.some((el) => el.id == data.id) ? (
+                        <button onClick={() => dispatch(removeFromCart(data))}>
+                          <IoCartOutline /> Remove From Cart
+                        </button>
+                      ) : (
+                        <button onClick={() => dispatch(addToCart(data))}>
+                          <IoCartOutline /> Add To Cart
+                        </button>
+                      )}
+
+                      <button onClick={() => dispatch(toggleHeart(data))}>
+                        {wishes.some((item) => item.id === data.id) ? (
+                          <IoHeartSharp style={{ color: "#40bfff" }} />
+                        ) : (
+                          <IoHeartOutline />
+                        )}
                       </button>
                     </div>
                   </div>

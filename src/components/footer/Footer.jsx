@@ -1,10 +1,12 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import logo from "@/assets/images/logo.svg";
 import brand1 from "@/assets/images/brand1.svg";
 import brand2 from "@/assets/images/brand2.svg";
 import brand3 from "@/assets/images/brand3.svg";
 import brand4 from "@/assets/images/brand4.svg";
+import { IoMdClose } from "react-icons/io";
 
 const Footer = () => {
   const item = [
@@ -25,15 +27,43 @@ const Footer = () => {
       title: "Our Offers",
     },
   ];
-  const footerLinks = item?.map((el) => (
-    <ul key={el.id}>
-      <h3>{el.title}</h3>
-      <li>About Us</li>
-      <li>Information</li>
-      <li>Privacy Policy</li>
-      <li>Terms & Conditions</li>
-    </ul>
-  ));
+  const [footer, setFooter] = useState(new Array(item.length).fill(false));
+  const toggleLinks = (index) => {
+    setFooter((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+  const footerLinks = item?.map((el, index) => {
+    const linkStyle = {
+      display: footer[index] ? "block" : "none",
+      transition: "opacity 0.2s ease-in-out",
+    };
+
+    const buttonStyle = {
+      transform: footer[index] ? "rotate(0deg)" : "rotate(45deg)",
+      transition: "transform 0.2s ease-in-out",
+    };
+    return (
+      <ul key={el.id}>
+        <h3>{el.title}</h3>
+        <button
+          onClick={() => toggleLinks(index)}
+          style={buttonStyle}
+          className={`footer__item`}
+        >
+          <IoMdClose />
+        </button>
+        <div style={linkStyle} className={`ul__item`}>
+          <li>About Us</li>
+          <li>Information</li>
+          <li>Privacy Policy</li>
+          <li>Terms & Conditions</li>
+        </div>
+      </ul>
+    );
+  });
   return (
     <section className="footer">
       <div className="container">

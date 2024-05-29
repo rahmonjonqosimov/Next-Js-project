@@ -15,18 +15,21 @@ import { FaRegUser } from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";
 import { GoSearch } from "react-icons/go";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [shrink, setShrink] = useState(false);
+  const wishes = useSelector((s) => s.heart.value);
+  const cart = useSelector((s) => s.cart.value);
 
-  // window.addEventListener("scroll", () => {
-  //   if (window.scrollY > 100) {
-  //     setShrink(true);
-  //   } else {
-  //     setShrink(false);
-  //   }
-  // });
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 70) {
+      setShrink(true);
+    } else {
+      setShrink(false);
+    }
+  });
 
   const navItems = [
     {
@@ -71,7 +74,7 @@ const Navbar = () => {
   ));
   return (
     <section className="header">
-      <div className="top__navbar">
+      <div className={`top__navbar`}>
         <div className="container">
           <div className="header__top">
             <div className="selects">
@@ -89,38 +92,41 @@ const Navbar = () => {
               <Link href={"/login"}>
                 <AiOutlineUser />
               </Link>
-              <Link className="count__item" href={"/login"}>
+              <Link className="count__item" href={"/wishlist"}>
                 <IoHeartOutline />
-                <sup>0</sup>
+                <sup>{wishes.length}</sup>
               </Link>
-              <Link className="count__item" href={"/login"}>
+              <Link className="count__item" href={"/cart"}>
                 <IoCartOutline />
-                <sup>0</sup>
+                <sup>{cart.length}</sup>
               </Link>
-              <Link href={"/login"}>
+              <Link href={"/"}>
                 <GoSearch />
               </Link>
             </div>
           </div>
         </div>
       </div>
+      <div className={`fixed ${shrink ? "shrink" : ""}`}>
+        <div className="container ">
+          <nav className={`nav  `}>
+            <Link href={"/"}>
+              <Image alt="Logo" width={134} height={44} src={logo} />
+            </Link>
+            <ul className={`nav__links`}>{navLinks}</ul>
+          </nav>
+        </div>
+      </div>
       <div className="container">
-        <nav className={`nav ${shrink ? "shrink" : ""} `}>
-          <Link href={"/"}>
-            <Image alt="Logo" width={134} height={44} src={logo} />
-          </Link>
-          <ul className={`nav__links`}>{navLinks}</ul>
-        </nav>
-
-        <div className={`navbar ${shrink ? "shrink" : ""} `}>
+        <div className={`navbar ${shrink ? "shrink1" : ""} `}>
           <div className="serach__input">
             <input type="text" placeholder="Search Product" />
             <IoSearch className="serach__icon" />
           </div>
           <div className="nav__links">
-            <Link className="count__item" href={`/wishes`}>
+            <Link className="count__item" href={`/wishlist`}>
               <IoHeartOutline />
-              <sup>0</sup>
+              <sup>{wishes.length}</sup>
             </Link>
             <Link href={`/notification`}>
               <IoMdNotificationsOutline />
@@ -139,7 +145,7 @@ const Navbar = () => {
           <Link className="count__item" href={"/cart"}>
             <IoCartOutline />
             <span>Cart</span>
-            <sup>0</sup>
+            <sup>{cart.length}</sup>
           </Link>
           <Link href={"/offer"}>
             <MdOutlineLocalOffer />

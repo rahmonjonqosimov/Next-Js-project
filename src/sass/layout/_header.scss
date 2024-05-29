@@ -1,13 +1,19 @@
 .header {
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 10px #0001;
   background: #fff;
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 101;
   .top__navbar {
     border-bottom: 1px solid #eee;
     .header__top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px;
+      padding: 20px 0;
       .selects {
         display: flex;
         align-items: center;
@@ -49,8 +55,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    padding: 24px 0;
-    transition: 0.2s;
+    margin: 0 auto;
+    background: #fff;
+
+    transition: 0.3s;
     .nav__links {
       display: flex;
       max-width: 815px;
@@ -94,15 +102,34 @@
   .bottom__menu {
     display: none;
   }
+  .fixed {
+    background: #fff;
+    padding: 24px 0;
+    transition: 0.3s;
+  }
   .shrink {
     padding: 6px 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 4px 4px 10px #0001;
   }
+  .shrink1 {
+    padding: 6px 0;
+  }
+
   @media screen and (max-width: 800px) {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
+    .fixed {
+      display: none;
+    }
     .top__navbar {
       display: none;
     }
