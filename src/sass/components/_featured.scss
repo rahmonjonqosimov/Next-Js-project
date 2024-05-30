@@ -20,6 +20,8 @@
       display: flex;
       gap: 24px;
       padding: 20px;
+      justify-content: center;
+      align-items: center;
       .text {
         h4 {
           font-family: Poppins;
@@ -138,4 +140,8 @@
       width: 100%;
     }
   }
+}
+
+.swiper-slide {
+  text-align: center !important;
 }
