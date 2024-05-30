@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -115,9 +115,11 @@ const CartContent = () => {
       </div>
     </div>
   ));
-  checkout
-    ? (document.querySelector("body").style.overflow = "hidden")
-    : (document.querySelector("body").style.overflow = "auto");
+  useEffect(() => {
+    checkout
+      ? (document.querySelector("body").style.overflow = "hidden")
+      : (document.querySelector("body").style.overflow = "auto");
+  }, [checkout]);
   return (
     <>
       <div className="cart">
@@ -173,4 +175,4 @@ const CartContent = () => {
   );
 };
 
-export default CartContent;
+export default memo(CartContent);
