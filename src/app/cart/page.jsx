@@ -1,11 +1,12 @@
 import CartContent from "@/components/cart-content/CartContent";
+import React from "react";
 
-const Cart = () => {
+const page = () => {
   return (
-    <>
+    <div>
       <CartContent />
-    </>
+    </div>
   );
 };
 
-export default Cart;
+export default page;

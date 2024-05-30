@@ -24,7 +24,6 @@ const SingleRoute = ({ data }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(addToCart(JSON.parse(localStorage.getItem("cart")) || []));
-
     dispatch(toggleHeart(JSON.parse(localStorage.getItem("wishlist")) || []));
   }, []);
   const handleLike = (product) => {
@@ -40,6 +39,7 @@ const SingleRoute = ({ data }) => {
   };
   /////////////////////////////////////////////
 
+  //////////////////////// CART
   const handleCart = (product) => {
     let index = cart.findIndex((el) => el.id === product.id);
     let result = cart;
@@ -49,7 +49,6 @@ const SingleRoute = ({ data }) => {
     dispatch(addToCart(result));
     localStorage.setItem("cart", JSON.stringify(result));
   };
-
   const wishes = useSelector((s) => s.heart.value);
   const cart = useSelector((s) => s.cart.value);
   const [item] = cart.filter((el) => el.id == data.id);
