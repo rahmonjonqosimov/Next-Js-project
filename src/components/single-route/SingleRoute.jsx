@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import star from "@/assets/images/star.svg";
 import color1 from "@/assets/images/color-1.svg";
 import color2 from "@/assets/images/color-2.svg";
@@ -19,10 +19,68 @@ import {
 } from "@/lib/features/cart/cartSlice";
 
 const SingleRoute = ({ data }) => {
+  // WISHES //////////////////////////
+  let wishlist = useSelector((state) => state.heart.value);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addToCart(JSON.parse(localStorage.getItem("cart")) || []));
+
+    dispatch(toggleHeart(JSON.parse(localStorage.getItem("wishlist")) || []));
+  }, []);
+  const handleLike = (product) => {
+    let index = wishlist.findIndex((el) => el.id === product.id);
+    let result = null;
+    if (index < 0) {
+      result = [...wishlist, product];
+    } else {
+      result = wishlist.filter((el) => el.id !== product.id);
+    }
+    dispatch(toggleHeart(result));
+    localStorage.setItem("wishlist", JSON.stringify(result));
+  };
+  /////////////////////////////////////////////
+
+  const handleCart = (product) => {
+    let index = cart.findIndex((el) => el.id === product.id);
+    let result = cart;
+    if (index < 0) {
+      result = [...cart, { ...product, quantity: 1 }];
+    }
+    dispatch(addToCart(result));
+    localStorage.setItem("cart", JSON.stringify(result));
+  };
+
   const wishes = useSelector((s) => s.heart.value);
   const cart = useSelector((s) => s.cart.value);
-  const dispatch = useDispatch();
   const [item] = cart.filter((el) => el.id == data.id);
+  //////////////////////////////////
+  const removeCart = (product) => {
+    let result = cart.filter((i) => i.id !== product.id);
+    dispatch(removeFromCart(result));
+    localStorage.setItem("cart", JSON.stringify(result));
+  };
+  //////////////////////////////
+
+  const inc = (product) => {
+    let index = cart.findIndex((el) => el.id === product.id);
+    let result = cart;
+    result = cart.map((item, inx) =>
+      inx === index ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    dispatch(incrementCart(result));
+    localStorage.setItem("cart", JSON.stringify(result));
+  };
+  ////////////////////////////////////////////
+  const dec = (product) => {
+    let index = cart.findIndex((el) => el.id === product.id);
+    let result = cart;
+    result = cart.map((item, inx) =>
+      inx === index ? { ...item, quantity: item.quantity - 1 } : item
+    );
+    dispatch(decrementCart(result));
+    localStorage.setItem("cart", JSON.stringify(result));
+  };
+
   return (
     <>
       <section className="detail">
@@ -136,7 +194,7 @@ const SingleRoute = ({ data }) => {
                           disabled={
                             item?.quantity ? +item?.quantity <= 1 : false
                           }
-                          onClick={() => dispatch(decrementCart(data))}
+                          onClick={() => dec(data)}
                         >
                           -
                         </button>
@@ -145,7 +203,7 @@ const SingleRoute = ({ data }) => {
                           disabled={
                             item?.quantity ? +item?.quantity >= 10 : false
                           }
-                          onClick={() => dispatch(incrementCart(data))}
+                          onClick={() => inc(data)}
                         >
                           +
                         </button>
@@ -156,16 +214,16 @@ const SingleRoute = ({ data }) => {
 
                     <div className="cart__wishes">
                       {cart.some((el) => el.id == data.id) ? (
-                        <button onClick={() => dispatch(removeFromCart(data))}>
+                        <button onClick={() => removeCart(data)}>
                           <IoCartOutline /> Remove From Cart
                         </button>
                       ) : (
-                        <button onClick={() => dispatch(addToCart(data))}>
+                        <button onClick={() => handleCart(data)}>
                           <IoCartOutline /> Add To Cart
                         </button>
                       )}
 
-                      <button onClick={() => dispatch(toggleHeart(data))}>
+                      <button onClick={() => handleLike(data)}>
                         {wishes.some((item) => item.id === data.id) ? (
                           <IoHeartSharp style={{ color: "#40bfff" }} />
                         ) : (

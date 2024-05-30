@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
   value: "all",
 };
-
 export const productCategorySlice = createSlice({
   name: "counter",
   initialState,
@@ -13,8 +11,5 @@ export const productCategorySlice = createSlice({
     },
   },
 });
-
-// Action creators are generated for each case reducer function
 export const { cetegorySort } = productCategorySlice.actions;
-
 export default productCategorySlice.reducer;

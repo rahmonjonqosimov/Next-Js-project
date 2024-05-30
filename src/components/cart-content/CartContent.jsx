@@ -1,12 +1,13 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import {
   incrementCart,
   decrementCart,
   removeFromCart,
+  addToCart,
 } from "@/lib/features/cart/cartSlice";
 import { AiOutlineDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { toggleHeart } from "@/lib/features/heart/heartSlice";
@@ -14,9 +15,66 @@ import Checkout from "../checkout/Checkout";
 
 const CartContent = () => {
   const [checkout, setCheckout] = useState(false);
+
   const dispatch = useDispatch();
+  // WISHES //////////////////////////
+  let wishlist = useSelector((state) => state.heart.value);
   const cart = useSelector((s) => s.cart.value);
-  const wishes = useSelector((s) => s.heart.value);
+
+  useEffect(() => {
+    dispatch(addToCart(JSON.parse(localStorage.getItem("cart")) || []));
+    dispatch(toggleHeart(JSON.parse(localStorage.getItem("wishlist")) || []));
+  }, []);
+  const handleLike = (product) => {
+    let index = wishlist.findIndex((el) => el.id === product.id);
+    let result = null;
+    if (index < 0) {
+      result = [...wishlist, product];
+    } else {
+      result = wishlist.filter((el) => el.id !== product.id);
+    }
+    dispatch(toggleHeart(result));
+    localStorage.setItem("wishlist", JSON.stringify(result));
+  };
+  /////////////////////////////////////////////
+
+  // const handleCart = (product) => {
+  //   let index = cart.findIndex((el) => el.id === product.id);
+  //   let result = cart;
+  //   if (index < 0) {
+  //     result = [...cart, { ...product, quantity: 1 }];
+  //   }
+  //   dispatch(addToCart(result));
+  //   localStorage.setItem("cart", JSON.stringify(result));
+  // };
+  //////////////////////////////////
+  const removeCart = (product) => {
+    let result = cart.filter((i) => i.id !== product.id);
+    dispatch(removeFromCart(result));
+    localStorage.setItem("cart", JSON.stringify(result));
+  };
+  //////////////////////////////
+
+  const inc = (product) => {
+    let index = cart.findIndex((el) => el.id === product.id);
+    let result = cart;
+    result = cart.map((item, inx) =>
+      inx === index ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    dispatch(incrementCart(result));
+    localStorage.setItem("cart", JSON.stringify(result));
+  };
+  ////////////////////////////////////////////
+  const dec = (product) => {
+    let index = cart.findIndex((el) => el.id === product.id);
+    let result = cart;
+    result = cart.map((item, inx) =>
+      inx === index ? { ...item, quantity: item.quantity - 1 } : item
+    );
+    dispatch(decrementCart(result));
+    localStorage.setItem("cart", JSON.stringify(result));
+  };
+  ///////////////////////////////////////////
   const total = cart.reduce(
     (sum, el) => sum + el.quantity * Math.round(el.price),
     0
@@ -26,7 +84,7 @@ const CartContent = () => {
       <div className="hr"></div>
       <div className="cart__wrapper">
         <div className="products__item">
-          <button onClick={() => dispatch(removeFromCart(el))}>
+          <button onClick={() => removeCart(el)}>
             <IoCloseOutline />
           </button>
           <Image alt={el.title} width={140} height={94} src={el.image} />
@@ -37,14 +95,14 @@ const CartContent = () => {
           <div className="media__cart">
             <h4 title={el.title}>{el.title}</h4>
             <div className="buttons">
-              <button onClick={() => dispatch(toggleHeart(el))}>
-                {wishes.some((item) => item.id === el.id) ? (
+              <button onClick={() => handleLike(el)}>
+                {wishlist.some((item) => item.id === el.id) ? (
                   <AiFillHeart style={{ color: "#40bfff" }} />
                 ) : (
                   <AiOutlineHeart />
                 )}
               </button>
-              <button onClick={() => dispatch(removeFromCart(el))}>
+              <button onClick={() => removeCart(el)}>
                 <AiOutlineDelete />
               </button>
             </div>
@@ -53,17 +111,11 @@ const CartContent = () => {
           <div className="bottom">
             <p className="narx">${Math.round(el.price) * el.quantity}</p>
             <div className="qty">
-              <button
-                disabled={el.quantity <= 1}
-                onClick={() => dispatch(decrementCart(el))}
-              >
+              <button disabled={el.quantity <= 1} onClick={() => dec(el)}>
                 -
               </button>
               <span>{el.quantity}</span>
-              <button
-                disabled={el.quantity >= 10}
-                onClick={() => dispatch(incrementCart(el))}
-              >
+              <button disabled={el.quantity >= 10} onClick={() => inc(el)}>
                 +
               </button>
             </div>

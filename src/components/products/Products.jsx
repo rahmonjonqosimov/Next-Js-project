@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import {
   IoCart,
@@ -9,20 +9,54 @@ import {
   IoHeartSharp,
 } from "react-icons/io5";
 import { IoEyeOutline } from "react-icons/io5";
-
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { incLimit } from "@/lib/features/limit/limitSlice";
 import Skeleton from "../skeleton/Skeleton";
 import { toggleHeart } from "@/lib/features/heart/heartSlice";
 import { cetegorySort } from "@/lib/features/product-category/productCategorySlice";
-
 import { addToCart } from "@/lib/features/cart/cartSlice";
 
 const Products = ({ data, isLoading, title, btn, category, url }) => {
+  // WISHES //////////////////////////
+  let wishlist = useSelector((state) => state.heart.value);
+  let cart = useSelector((state) => state.cart.value);
+  console.log(cart);
   const dispatch = useDispatch();
-  const wishes = useSelector((s) => s.heart.value);
-  const cart = useSelector((s) => s.cart.value);
+  useEffect(() => {
+    dispatch(addToCart(JSON.parse(localStorage.getItem("cart")) || []));
+    dispatch(toggleHeart(JSON.parse(localStorage.getItem("wishlist")) || []));
+  }, []);
+  const handleLike = (product) => {
+    let index = wishlist.findIndex((el) => el.id === product.id);
+    let result = null;
+    if (index < 0) {
+      result = [...wishlist, product];
+    } else {
+      result = wishlist.filter((el) => el.id !== product.id);
+    }
+    dispatch(toggleHeart(result));
+    localStorage.setItem("wishlist", JSON.stringify(result));
+  };
+  /////////////////////////////////////////////
+
+  // ////////   CART ///////////////////
+
+  const handleCart = (product) => {
+    let index = cart.findIndex((el) => el.id === product.id);
+    let result = cart;
+    if (index < 0) {
+      result = [...cart, { ...product, quantity: 1 }];
+    }
+    dispatch(addToCart(result));
+    localStorage.setItem("cart", JSON.stringify(result));
+  };
+
+  ///////////////////////////
+
+  // const dispatch = useDispatch();
+  // const wishes = useSelector((s) => s.heart.value);
+  // const cart = useSelector((s) => s.cart.value);
   const product = data?.map((el) => (
     <div key={el.id} className="product__card">
       <div className="product__img">
@@ -30,14 +64,14 @@ const Products = ({ data, isLoading, title, btn, category, url }) => {
           <Image alt={el.title} width={300} height={270} src={el.image} />
         </Link>
         <div className="wishes--cart">
-          <button onClick={() => dispatch(toggleHeart(el))}>
-            {wishes.some((item) => item.id === el.id) ? (
+          <button onClick={() => handleLike(el)}>
+            {wishlist.some((item) => item.id === el.id) ? (
               <IoHeartSharp style={{ color: "#40bfff" }} />
             ) : (
               <IoHeartOutline />
             )}
           </button>
-          <button onClick={() => dispatch(addToCart(el))}>
+          <button onClick={() => handleCart(el)}>
             {cart.some((item) => item.id === el.id) ? (
               <IoCart style={{ color: "#40bfff" }} />
             ) : (

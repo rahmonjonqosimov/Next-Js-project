@@ -1,6 +1,6 @@
+"use client";
 import Link from "next/link";
 import React from "react";
-
 const ContactForm = () => {
   return (
     <section className="contact__form">
