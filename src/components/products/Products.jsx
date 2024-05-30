@@ -21,7 +21,6 @@ const Products = ({ data, isLoading, title, btn, category, url }) => {
   // WISHES //////////////////////////
   let wishlist = useSelector((state) => state.heart.value);
   let cart = useSelector((state) => state.cart.value);
-  console.log(cart);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(addToCart(JSON.parse(localStorage.getItem("cart")) || []));

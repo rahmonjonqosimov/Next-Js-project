@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [shrink, setShrink] = useState(false);
+  // const [shrink, setShrink] = useState(false);
   const wishes = useSelector((s) => s.heart.value);
   const cart = useSelector((s) => s.cart.value);
 
@@ -107,7 +107,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className={`fixed ${shrink ? "shrink" : ""}`}>
+      <div className={`fixed`}>
         <div className="container ">
           <nav className={`nav  `}>
             <Link href={"/"}>
@@ -118,7 +118,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="container">
-        <div className={`navbar ${shrink ? "shrink1" : ""} `}>
+        <div className={`navbar  `}>
           <div className="serach__input">
             <input type="text" placeholder="Search Product" />
             <IoSearch className="serach__icon" />
