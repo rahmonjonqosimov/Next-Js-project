@@ -23,13 +23,13 @@ const Navbar = () => {
   const wishes = useSelector((s) => s.heart.value);
   const cart = useSelector((s) => s.cart.value);
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 70) {
-      setShrink(true);
-    } else {
-      setShrink(false);
-    }
-  });
+  // window.addEventListener("scroll", () => {
+  //   if (window.scrollY > 70) {
+  //     setShrink(true);
+  //   } else {
+  //     setShrink(false);
+  //   }
+  // });
 
   const navItems = [
     {

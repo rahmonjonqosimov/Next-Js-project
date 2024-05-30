@@ -36,17 +36,7 @@ const CartContent = () => {
     dispatch(toggleHeart(result));
     localStorage.setItem("wishlist", JSON.stringify(result));
   };
-  /////////////////////////////////////////////
 
-  // const handleCart = (product) => {
-  //   let index = cart.findIndex((el) => el.id === product.id);
-  //   let result = cart;
-  //   if (index < 0) {
-  //     result = [...cart, { ...product, quantity: 1 }];
-  //   }
-  //   dispatch(addToCart(result));
-  //   localStorage.setItem("cart", JSON.stringify(result));
-  // };
   //////////////////////////////////
   const removeCart = (product) => {
     let result = cart.filter((i) => i.id !== product.id);

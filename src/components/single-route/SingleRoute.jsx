@@ -80,6 +80,7 @@ const SingleRoute = ({ data }) => {
     dispatch(decrementCart(result));
     localStorage.setItem("cart", JSON.stringify(result));
   };
+  ///////////////////////////////////////////
 
   return (
     <>
