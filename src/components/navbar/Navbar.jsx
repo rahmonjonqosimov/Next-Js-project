@@ -22,7 +22,7 @@ const Navbar = () => {
   // const [shrink, setShrink] = useState(false);
   const wishes = useSelector((s) => s.heart.value);
   const cart = useSelector((s) => s.cart.value);
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   // window.addEventListener("scroll", () => {
   //   if (window.scrollY > 70) {
@@ -90,7 +90,10 @@ const Navbar = () => {
               </select>
             </div>
             <div className="links">
-              <Link href={token ? " /admin" : "/login"}>
+              <Link
+                href={"/login"}
+                //  href={token ? " /admin" : "/login"}
+              >
                 <AiOutlineUser />
               </Link>
               <Link className="count__item" href={"/wishlist"}>

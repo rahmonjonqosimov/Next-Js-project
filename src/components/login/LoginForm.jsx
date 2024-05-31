@@ -2,27 +2,34 @@
 import React, { useEffect, useState } from "react";
 import { useUserSignInMutation } from "@/lib/userApi";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
 const initialState = {
   username: "mor_2314",
   password: "83r5^_",
 };
-import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const router = useRouter();
-  const [signIn, { data, isSuccess, isLoading }] = useUserSignInMutation();
+  const [signIn, { data, isSuccess, isError, isLoading }] =
+    useUserSignInMutation();
   const [user, setUser] = useState(initialState);
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("Welcome to Admin panel !");
-      router.push("/admin");
-      localStorage.setItem("token", data.token);
-    }
-  }, [isSuccess]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     signIn(user);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Welcome to Admin panel!");
+      localStorage.setItem("token", data.token);
+      router.push("/admin");
+    } else if (isError) {
+      toast.error("Login failed");
+    }
+  }, [isSuccess, isError, data, router]);
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit} action="" className="login__form">

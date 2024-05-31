@@ -1,12 +1,31 @@
 "use client";
-import React from "react";
-import { redirect } from "next/navigation";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { setToken } from "@/lib/features/token/tokenSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Admin = () => {
-  const isLogin = localStorage.getItem("token");
-  if (!isLogin) {
-    redirect("/login");
-  }
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const isLogin = useSelector((state) => state.token.value);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(setToken(token));
+    } else {
+      router.push("/login");
+    }
+  }, [dispatch, router]);
+
+  const handleLogout = () => {
+    dispatch(setToken(null));
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
+  console.log(isLogin);
+
   return (
     <div className="container">
       <div className="admin__page">
@@ -35,7 +54,9 @@ const Admin = () => {
           ut. Odit quibusdam quis aut enim delectus blanditiis, quisquam quidem
           maiores suscipit. Dignissimos, ut repudiandae!
         </p>
-        <button className="log__out"> Log out</button>
+        <button className="log__out" onClick={handleLogout}>
+          Log out
+        </button>
       </div>
     </div>
   );

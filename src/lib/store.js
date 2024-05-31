@@ -5,6 +5,7 @@ import { api } from "./api";
 import heartSlice from "./features/heart/heartSlice";
 import productCategorySlice from "./features/product-category/productCategorySlice";
 import cartSlice from "./features/cart/cartSlice";
+import setToken from "./features/token/tokenSlice";
 
 export const makeStore = () => {
   return configureStore({
@@ -14,6 +15,7 @@ export const makeStore = () => {
       heart: heartSlice,
       category: productCategorySlice,
       cart: cartSlice,
+      token: setToken,
       [api.reducerPath]: api.reducer,
     },
     middleware: (getDefaultMiddleware) =>
