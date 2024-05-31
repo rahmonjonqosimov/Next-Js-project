@@ -18,6 +18,7 @@ import { cetegorySort } from "@/lib/features/product-category/productCategorySli
 import { addToCart } from "@/lib/features/cart/cartSlice";
 import { motion } from "framer-motion";
 import { PageWrapper } from "@/app/page-wrapper";
+import { toast } from "react-toastify";
 const variants = {
   hidden: { opacity: 0 },
   show: {
@@ -37,12 +38,14 @@ const images = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.25,
+      duration: 0.5,
     },
   },
 };
 
 const Products = ({ data, isLoading, title, btn, category, url }) => {
+  const productCategory = useSelector((state) => state.category.value);
+
   // WISHES //////////////////////////
   let wishlist = useSelector((state) => state.heart.value);
   let cart = useSelector((state) => state.cart.value);
@@ -95,7 +98,12 @@ const Products = ({ data, isLoading, title, btn, category, url }) => {
               <IoHeartOutline />
             )}
           </button>
-          <button onClick={() => handleCart(el)}>
+          <button
+            disabled={cart.some((item) => item.id === el.id)}
+            onClick={() => {
+              handleCart(el), toast.success("Add to Cart");
+            }}
+          >
             {cart.some((item) => item.id === el.id) ? (
               <IoCart style={{ color: "#40bfff" }} />
             ) : (
@@ -144,11 +152,22 @@ const Products = ({ data, isLoading, title, btn, category, url }) => {
           {url ? (
             <div className="horizontal-menu">
               <div className="btns">
-                <button onClick={() => dispatch(cetegorySort("all"))}>
+                <button
+                  style={{
+                    color: "all" === productCategory ? "#41BFFF" : "#22262A",
+                  }}
+                  onClick={() => dispatch(cetegorySort("all"))}
+                >
                   All
                 </button>
                 {category?.map((el, inx) => (
-                  <button key={inx} onClick={() => dispatch(cetegorySort(el))}>
+                  <button
+                    key={inx}
+                    style={{
+                      color: el === productCategory ? "#41BFFF" : "#22262A",
+                    }}
+                    onClick={() => dispatch(cetegorySort(el))}
+                  >
                     {el[0].toUpperCase() + el.slice(1)}
                   </button>
                 ))}

@@ -5,11 +5,11 @@ import HomeProduct from "@/components/productRender/HomeProduct";
 import { PageWrapper } from "@/app/page-wrapper";
 
 const Detail = async ({ params: { id } }) => {
-  const data = await getData(`/products/${id}`);
+  // const data = await getData(`/products/${id}`);
   return (
     <>
       <PageWrapper>
-        <SingleRoute data={data} />
+        <SingleRoute id={id} />
         <HomeProduct />
       </PageWrapper>
     </>

@@ -7,7 +7,6 @@ import WhyUs from "@/components/why-us/WhyUs";
 import HomeProduct from "@/components/productRender/HomeProduct";
 import Banners from "@/components/banners/Banners";
 import { PageWrapper } from "./page-wrapper";
-import { ToastContainer } from "react-toastify";
 export default function Home() {
   return (
     <>

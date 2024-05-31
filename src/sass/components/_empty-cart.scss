@@ -1,0 +1,32 @@
+.empty__cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto;
+  h2 {
+    font-family: Poppins;
+    color: #262626;
+    margin: 10px 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+    text-align: center;
+  }
+  button {
+    padding: 10px 50px;
+    border: none;
+    background: #008dff;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 20px;
+    transition: 0.2s;
+    &:active {
+      border-radius: 2px;
+    }
+  }
+}

@@ -12,6 +12,8 @@ import {
 import { AiOutlineDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { toggleHeart } from "@/lib/features/heart/heartSlice";
 import Checkout from "../checkout/Checkout";
+import EmptyCart from "../empty-cart/EmptyCart";
+import img from "@/assets/images/basket_no_page.webp";
 
 const CartContent = () => {
   const [checkout, setCheckout] = useState(false);
@@ -122,7 +124,7 @@ const CartContent = () => {
   }, [checkout]);
   return (
     <>
-      {cart ? (
+      {cart.length ? (
         <div className="cart">
           <div className="container">
             <div className="cart__path">
@@ -162,12 +164,15 @@ const CartContent = () => {
           </div>
         </div>
       ) : (
-        <></>
+        <EmptyCart
+          img={img}
+          title={"There are currently no products in the cart."}
+        />
       )}
 
       {checkout ? (
         <>
-          <Checkout setCheckout={setCheckout} />
+          <Checkout data={cart} setCheckout={setCheckout} />
           <div
             onClick={() => setCheckout(false)}
             className="cart__owerley"

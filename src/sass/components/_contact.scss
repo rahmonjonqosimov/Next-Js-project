@@ -105,6 +105,24 @@
           border: 1px solid #40bfff;
         }
       }
+      button {
+        margin-top: 30px;
+        height: 70px;
+        border: none;
+        background-color: #40bfff;
+        color: #fff;
+        font-family: Poppins;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 20px;
+        transition: 0.2s;
+        &:active {
+          border-radius: 2px;
+        }
+      }
     }
   }
   .search {
