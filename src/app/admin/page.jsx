@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 const Admin = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const isLogin = useSelector((state) => state.token.value);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -23,8 +22,6 @@ const Admin = () => {
     localStorage.removeItem("token");
     router.push("/login");
   };
-
-  console.log(isLogin);
 
   return (
     <div className="container">

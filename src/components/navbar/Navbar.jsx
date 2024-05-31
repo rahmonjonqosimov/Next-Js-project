@@ -19,20 +19,20 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [shrink, setShrink] = useState(false);
+  // const [shrink, setShrink] = useState(false);
   const wishes = useSelector((s) => s.heart.value);
   const cart = useSelector((s) => s.cart.value);
   const token = useSelector((state) => state.token.value);
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY >= 70.19) {
-        setShrink(true);
-      } else {
-        setShrink(false);
-      }
-    });
-  }, [window.scrollY]);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => {
+  //     if (window.scrollY >= 70.19) {
+  //       setShrink(true);
+  //     } else {
+  //       setShrink(false);
+  //     }
+  //   });
+  // }, [window.scrollY]);
 
   const navItems = [
     {
@@ -110,7 +110,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className={`fixed ${shrink ? "show" : ""}`}>
+      {/* ${shrink ? "show" : ""} */}
+      <div className={`fixed `}>
         <div className="container ">
           <nav className={`nav  `}>
             <Link href={"/"}>
