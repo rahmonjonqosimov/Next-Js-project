@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import logo from "@/assets/images/logo.svg";
 import brand1 from "@/assets/images/brand1.svg";
 import brand2 from "@/assets/images/brand2.svg";
@@ -106,4 +106,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

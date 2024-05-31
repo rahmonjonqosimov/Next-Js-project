@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterSlice from "./features/counter/counterSlice";
 import limitSlice from "./features/limit/limitSlice";
 import { api } from "./api";
 import heartSlice from "./features/heart/heartSlice";
@@ -10,7 +9,6 @@ import setToken from "./features/token/tokenSlice";
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      counter: counterSlice,
       limit: limitSlice,
       heart: heartSlice,
       category: productCategorySlice,

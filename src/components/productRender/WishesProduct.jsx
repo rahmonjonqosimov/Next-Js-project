@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { memo } from "react";
 import Products from "../products/Products";
 import { useSelector } from "react-redux";
 import EmptyCart from "../empty-cart/EmptyCart";
@@ -18,4 +18,4 @@ const WishesProduct = () => {
   );
 };
 
-export default WishesProduct;
+export default memo(WishesProduct);

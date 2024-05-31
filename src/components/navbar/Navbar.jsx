@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import logo from "@/assets/images/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -172,4 +172,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

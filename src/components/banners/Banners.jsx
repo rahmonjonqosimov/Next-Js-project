@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import img1 from "@/assets/images/home-banner-1.png";
 import img2 from "@/assets/images/home-banner-2.png";
 import img3 from "@/assets/images/home-banner-3.png";
@@ -57,4 +57,4 @@ const Banners = () => {
   );
 };
 
-export default Banners;
+export default memo(Banners);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import img1 from "@/assets/images/shipping.svg";
 import img2 from "@/assets/images/support.svg";
 import img3 from "@/assets/images/Group 12.svg";
@@ -41,4 +41,4 @@ const WhyUs = () => {
   );
 };
 
-export default WhyUs;
+export default memo(WhyUs);

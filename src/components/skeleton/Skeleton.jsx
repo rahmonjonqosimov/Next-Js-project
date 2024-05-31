@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const Skeleton = () => {
   return (
@@ -18,4 +18,4 @@ const Skeleton = () => {
   );
 };
 
-export default Skeleton;
+export default memo(Skeleton);

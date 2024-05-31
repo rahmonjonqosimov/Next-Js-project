@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { memo } from "react";
 import { useRouter } from "next/navigation";
 
 const EmptyCart = ({ img, title }) => {
@@ -15,4 +15,4 @@ const EmptyCart = ({ img, title }) => {
   );
 };
 
-export default EmptyCart;
+export default memo(EmptyCart);

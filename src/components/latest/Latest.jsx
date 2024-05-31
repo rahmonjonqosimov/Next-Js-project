@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import img1 from "@/assets/images/Nike.svg";
 import img2 from "@/assets/images/figma.svg";
 import img3 from "@/assets/images/kronos.svg";
@@ -45,4 +45,4 @@ const Latest = () => {
   );
 };
 
-export default Latest;
+export default memo(Latest);

@@ -1,17 +1,14 @@
 "use client";
-import React from "react";
-import img from "@/assets/images/buts.svg";
+import React, { memo } from "react";
 import star from "@/assets/images/star.svg";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Autoplay, Pagination } from "swiper/modules";
-
+import { Autoplay } from "swiper/modules";
 import { useGetProductsQuery } from "@/lib/productApi";
 import Link from "next/link";
-
 const Featured = () => {
   const { data } = useGetProductsQuery({ params: "?limit=20", path: "" });
 
@@ -20,7 +17,7 @@ const Featured = () => {
       <div className="container">
         <h1 className="featured__title">FEATURED PRODUCTS</h1>
         <Swiper
-          slidesPerView={1}
+          slidesPerView={10}
           spaceBetween={10}
           loop={true}
           autoplay={{
@@ -59,7 +56,13 @@ const Featured = () => {
             <SwiperSlide key={el.id}>
               <div className="featured__card">
                 <Link href={`/product/${el.id}`}>
-                  <Image alt="Buts" width={154} height={154} src={el.image} />
+                  <Image
+                    alt="Buts"
+                    style={{ objectFit: "contain" }}
+                    width={154}
+                    height={154}
+                    src={el.image}
+                  />
                 </Link>
                 <div className="text">
                   <h4 title={el.title} className="ell">
@@ -85,4 +88,4 @@ const Featured = () => {
   );
 };
 
-export default Featured;
+export default memo(Featured);

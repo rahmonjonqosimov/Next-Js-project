@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const SingleRouteLoading = () => {
   return (
@@ -52,4 +52,4 @@ const SingleRouteLoading = () => {
   );
 };
 
-export default SingleRouteLoading;
+export default memo(SingleRouteLoading);

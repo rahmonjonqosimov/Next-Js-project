@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import {
   IoCart,
@@ -87,9 +87,9 @@ const Products = ({ data, isLoading, title, btn, category, url }) => {
   const product = data?.map((el) => (
     <motion.div variants={images} key={el.id} className="product__card">
       <div className="product__img">
-        <Link href={`/product/${el.id}`}>
-          <Image alt={el.title} width={300} height={270} src={el.image} />
-        </Link>
+        {/* <Link href={`/product/${el.id}`}> */}
+        <Image alt={el.title} width={300} height={270} src={el.image} />
+        {/* </Link> */}
         <div className="wishes--cart">
           <button onClick={() => handleLike(el)}>
             {wishlist.some((item) => item.id === el.id) ? (
@@ -202,4 +202,4 @@ const Products = ({ data, isLoading, title, btn, category, url }) => {
   );
 };
 
-export default Products;
+export default memo(Products);

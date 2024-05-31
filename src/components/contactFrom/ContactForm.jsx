@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { toast } from "react-toastify";
 const initialState = {
   fullname: "",
@@ -97,4 +97,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default memo(ContactForm);

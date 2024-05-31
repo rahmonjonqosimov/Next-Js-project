@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import star from "@/assets/images/star.svg";
 import color1 from "@/assets/images/color-1.svg";
 import color2 from "@/assets/images/color-2.svg";
@@ -308,4 +308,4 @@ const SingleRoute = ({ id }) => {
   );
 };
 
-export default SingleRoute;
+export default memo(SingleRoute);

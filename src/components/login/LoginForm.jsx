@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useUserSignInMutation } from "@/lib/userApi";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -55,4 +55,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default memo(LoginForm);

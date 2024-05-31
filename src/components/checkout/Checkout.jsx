@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { MdClose, MdOutlineClose } from "react-icons/md";
+import React, { useState, memo } from "react";
+import { MdClose } from "react-icons/md";
 import { GoArrowLeft } from "react-icons/go";
 import { deleteAllCart } from "@/lib/features/cart/cartSlice";
 import { useDispatch } from "react-redux";
@@ -26,32 +26,42 @@ const Checkout = ({ setCheckout, data }) => {
   const [user, setUser] = useState(initialState);
   const handleSubmit = (e) => {
     e.preventDefault();
-    let text = "User %0A%0A";
-    text += `Fisrt Name: ${user.fname} %0A`;
-    text += `Last Name: ${user.lname} %0A`;
-    text += `Email: ${user.email} %0A`;
-    text += `Address: ${user.address} %0A`;
-    text += `Tel: ${user.tel} %0A%0A`;
 
-    data?.map((el, inx) => {
-      text += `Product ${inx + 1} %0A`;
-      text += `Title: ${el.title} %0A`;
-      text += `Quantity: ${el.quantity} %0A`;
-      text += `Price: $${el.price} %0A%0A`;
-    });
+    if (
+      user.address.trim() &&
+      user.fname.trim() &&
+      // user.lname.trim() &&
+      user.tel.trim()
+    ) {
+      let text = "User %0A%0A";
+      text += `Fisrt Name: ${user.fname} %0A`;
+      text += `Last Name: ${user.lname} %0A`;
+      text += `Email: ${user.email} %0A`;
+      text += `Address: ${user.address} %0A`;
+      text += `Tel: ${user.tel} %0A%0A`;
 
-    const total = data?.reduce((sum, el) => sum + el.quantity * el.price, 0);
-    text += `Total price: $${total} %0A%0A`;
+      data?.map((el, inx) => {
+        text += `Product ${inx + 1} %0A`;
+        text += `Title: ${el.title} %0A`;
+        text += `Quantity: ${el.quantity} %0A`;
+        text += `Price: $${el.price} %0A%0A`;
+      });
 
-    let url = `https://api.telegram.org/bot${BOT__TOKEN}/sendMessage?chat_id=${USER__ID}&text=${text}`;
-    let api = new XMLHttpRequest();
-    api.open("GET", url, true);
-    api.send();
-    setUser(initialState);
-    toast.success("Adminga malumotlar jo'natildi!");
-    setCheckout(false);
-    dispatch(deleteAllCart());
-    localStorage.removeItem("cart");
+      const total = data?.reduce((sum, el) => sum + el.quantity * el.price, 0);
+      text += `Total price: $${total} %0A%0A`;
+
+      let url = `https://api.telegram.org/bot${BOT__TOKEN}/sendMessage?chat_id=${USER__ID}&text=${text}`;
+      let api = new XMLHttpRequest();
+      api.open("GET", url, true);
+      api.send();
+      setUser(initialState);
+      toast.success("Adminga malumotlar jo'natildi!");
+      setCheckout(false);
+      dispatch(deleteAllCart());
+      localStorage.removeItem("cart");
+    } else {
+      toast.warning("Formani to'ldiring");
+    }
   };
   return (
     <div className="checkout__content">
@@ -144,4 +154,4 @@ const Checkout = ({ setCheckout, data }) => {
   );
 };
 
-export default Checkout;
+export default memo(Checkout);

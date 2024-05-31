@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import bannerImage from "@/assets/images/banner image.png";
 import Image from "next/image";
 
@@ -26,4 +26,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default memo(Banner);

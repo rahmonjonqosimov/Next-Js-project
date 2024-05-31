@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { memo } from "react";
 import Products from "../products/Products";
 import { useSelector } from "react-redux";
 import {
@@ -29,4 +29,4 @@ const HomeProduct = () => {
   );
 };
 
-export default HomeProduct;
+export default memo(HomeProduct);
