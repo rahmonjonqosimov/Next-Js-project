@@ -1,14 +1,18 @@
 "use client";
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import Products from "../products/Products";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "../empty-cart/EmptyCart";
 import img from "@/assets/images/heart-bubble.svg";
 import Link from "next/link";
+import { toggleHeart } from "@/lib/features/heart/heartSlice";
 
 const WishesProduct = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(toggleHeart(JSON.parse(localStorage.getItem("wishlist")) || []));
+  }, []);
   const wishes = useSelector((s) => s.heart.value);
-  console.log(wishes);
   return (
     <>
       <div className="path">

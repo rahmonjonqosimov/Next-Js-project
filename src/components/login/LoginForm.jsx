@@ -12,6 +12,7 @@ const initialState = {
 
 const LoginForm = () => {
   const router = useRouter();
+
   const [signIn, { data, isSuccess, isError, isLoading }] =
     useUserSignInMutation();
   const [user, setUser] = useState(initialState);
