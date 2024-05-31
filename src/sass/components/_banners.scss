@@ -24,6 +24,12 @@
           background: #0005;
           opacity: 0.2;
         }
+        animation: anim 0.3s ease-in 0s forwards;
+      }
+      @keyframes anim {
+        to {
+          transform: scale(1.04);
+        }
       }
       .banner__item__text {
         position: absolute;

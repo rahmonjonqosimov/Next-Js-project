@@ -1,0 +1,38 @@
+.admin__page {
+  margin-bottom: 300px;
+  h3 {
+    font-family: Poppins;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 60px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #000;
+    margin-bottom: 40px;
+    margin-top: 80px;
+  }
+  p {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 28.8px;
+    letter-spacing: 0.5px;
+    text-align: left;
+    color: #000;
+    margin-bottom: 26px;
+  }
+  .log__out {
+    width: 300px;
+    height: 70px;
+    border-radius: 20px;
+    border: none;
+    background: #33a0ff;
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 32.74px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #fff;
+  }
+}

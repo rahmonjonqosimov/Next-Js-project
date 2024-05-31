@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import "@/sass/main.scss";
 import StoreProvider from "./StoreProvider";
+import ToastNotificationComp from "@/components/toast-notification-comp/ToastNotificationComp";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           {children}
           <Footer />
+          <ToastNotificationComp />
         </body>
       </StoreProvider>
     </html>

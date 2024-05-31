@@ -122,44 +122,49 @@ const CartContent = () => {
   }, [checkout]);
   return (
     <>
-      <div className="cart">
-        <div className="container">
-          <div className="cart__path">
-            <h2 className="title">PRODUCT</h2>
-            <h2 className="price">PRICE</h2>
-            <h2 className="qty">QTY</h2>
-            <h2 className="unit__price">UNIT PRICE</h2>
-          </div>
-          {cartItem}
-          <div className="hr"></div>
-          <div className="check">
-            <div className="vaucher">
-              <input placeholder="Voucher code" type="text" name="" id="" />
-              <button>Redeem</button>
+      {cart ? (
+        <div className="cart">
+          <div className="container">
+            <div className="cart__path">
+              <h2 className="title">PRODUCT</h2>
+              <h2 className="price">PRICE</h2>
+              <h2 className="qty">QTY</h2>
+              <h2 className="unit__price">UNIT PRICE</h2>
             </div>
-            <div className="checkout">
-              <div className="row">
-                <p>Subtotal</p>
-                <p>${total}</p>
+            {cartItem}
+            <div className="hr"></div>
+            <div className="check">
+              <div className="vaucher">
+                <input placeholder="Voucher code" type="text" name="" id="" />
+                <button>Redeem</button>
               </div>
-              <div className="row">
-                <p>Shipping fee</p>
-                <p>{total ? "$20" : "$0"}</p>
+              <div className="checkout">
+                <div className="row">
+                  <p>Subtotal</p>
+                  <p>${total}</p>
+                </div>
+                <div className="row">
+                  <p>Shipping fee</p>
+                  <p>{total ? "$20" : "$0"}</p>
+                </div>
+                <div className="row">
+                  <p>Coupon</p>
+                  <p>$0</p>
+                </div>
+                <div className="hr"></div>
+                <div className="row">
+                  <h3>TOTAL</h3>
+                  <h3>${total ? total + 20 : "0"}</h3>
+                </div>
+                <button onClick={() => setCheckout(true)}>Check out</button>
               </div>
-              <div className="row">
-                <p>Coupon</p>
-                <p>$0</p>
-              </div>
-              <div className="hr"></div>
-              <div className="row">
-                <h3>TOTAL</h3>
-                <h3>${total ? total + 20 : "0"}</h3>
-              </div>
-              <button onClick={() => setCheckout(true)}>Check out</button>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <></>
+      )}
+
       {checkout ? (
         <>
           <Checkout setCheckout={setCheckout} />

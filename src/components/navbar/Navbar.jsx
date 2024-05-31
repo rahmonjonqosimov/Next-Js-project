@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "@/assets/images/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +22,7 @@ const Navbar = () => {
   // const [shrink, setShrink] = useState(false);
   const wishes = useSelector((s) => s.heart.value);
   const cart = useSelector((s) => s.cart.value);
+  const token = localStorage.getItem("token");
 
   // window.addEventListener("scroll", () => {
   //   if (window.scrollY > 70) {
@@ -89,7 +90,7 @@ const Navbar = () => {
               </select>
             </div>
             <div className="links">
-              <Link href={"/login"}>
+              <Link href={token ? " /admin" : "/login"}>
                 <AiOutlineUser />
               </Link>
               <Link className="count__item" href={"/wishlist"}>

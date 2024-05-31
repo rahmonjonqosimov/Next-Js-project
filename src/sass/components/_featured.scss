@@ -33,6 +33,7 @@
         }
         img {
           margin: 16px 0;
+          object-fit: contain !important;
         }
         .price {
           display: flex;
@@ -144,4 +145,16 @@
 
 .swiper-slide {
   text-align: center !important;
+}
+
+.ell {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  height: 45px;
+  max-width: 250px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }

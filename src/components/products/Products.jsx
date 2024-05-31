@@ -16,6 +16,31 @@ import Skeleton from "../skeleton/Skeleton";
 import { toggleHeart } from "@/lib/features/heart/heartSlice";
 import { cetegorySort } from "@/lib/features/product-category/productCategorySlice";
 import { addToCart } from "@/lib/features/cart/cartSlice";
+import { motion } from "framer-motion";
+import { PageWrapper } from "@/app/page-wrapper";
+const variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const images = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.25,
+    },
+  },
+};
 
 const Products = ({ data, isLoading, title, btn, category, url }) => {
   // WISHES //////////////////////////
@@ -57,7 +82,7 @@ const Products = ({ data, isLoading, title, btn, category, url }) => {
   // const wishes = useSelector((s) => s.heart.value);
   // const cart = useSelector((s) => s.cart.value);
   const product = data?.map((el) => (
-    <div key={el.id} className="product__card">
+    <motion.div variants={images} key={el.id} className="product__card">
       <div className="product__img">
         <Link href={`/product/${el.id}`}>
           <Image alt={el.title} width={300} height={270} src={el.image} />
@@ -108,40 +133,53 @@ const Products = ({ data, isLoading, title, btn, category, url }) => {
           <p>24 % Off</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   ));
 
   return (
-    <section className="product">
-      <div className="container">
-        <h2 className="title">{title}</h2>
-        {url ? (
-          <div className="horizontal-menu">
-            <div className="btns">
-              <button onClick={() => dispatch(cetegorySort("all"))}>All</button>
-              {category?.map((el, inx) => (
-                <button key={inx} onClick={() => dispatch(cetegorySort(el))}>
-                  {el[0].toUpperCase() + el.slice(1)}
+    <>
+      <section className="product">
+        <div className="container">
+          <h2 className="title">{title}</h2>
+          {url ? (
+            <div className="horizontal-menu">
+              <div className="btns">
+                <button onClick={() => dispatch(cetegorySort("all"))}>
+                  All
                 </button>
-              ))}
+                {category?.map((el, inx) => (
+                  <button key={inx} onClick={() => dispatch(cetegorySort(el))}>
+                    {el[0].toUpperCase() + el.slice(1)}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        ) : (
-          <></>
-        )}
-        <div className="product__wrapper">{product}</div>
-        {isLoading ? <Skeleton /> : <></>}
-        {btn ? (
-          <div className="see__more">
-            <button onClick={() => dispatch(incLimit(1))}>
-              {isLoading ? "Loading..." : "Load More"}
-            </button>
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-    </section>
+          ) : (
+            <></>
+          )}
+          <PageWrapper>
+            <motion.div
+              variants={variants}
+              initial="hidden"
+              animate="show"
+              className="product__wrapper"
+            >
+              {product}
+            </motion.div>
+          </PageWrapper>
+          {isLoading ? <Skeleton /> : <></>}
+          {btn ? (
+            <div className="see__more">
+              <button onClick={() => dispatch(incLimit(1))}>
+                {isLoading ? "Loading..." : "Load More"}
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+      </section>
+    </>
   );
 };
 

@@ -9,10 +9,10 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 });
+const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
 export const api = createApi({
   reducerPath: "mainApi",
   baseQuery: baseQueryWithRetry,
-  tagTypes: ["Product"],
+  tagTypes: ["Product", "User"],
   endpoints: () => ({}),
 });

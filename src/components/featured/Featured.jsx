@@ -8,43 +8,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination } from "swiper/modules";
-import img1 from "@/assets/images/home-banner-1.png";
-import img2 from "@/assets/images/home-banner-2.png";
-import img3 from "@/assets/images/home-banner-3.png";
+
+import { useGetProductsQuery } from "@/lib/productApi";
+import Link from "next/link";
 
 const Featured = () => {
-  const item = [
-    {
-      id: 1,
-      title: "FS - QUILTED MAXI CROSS BAG",
-      url: img1,
-      price: 499,
-    },
-    {
-      id: 2,
-      title: "FS - Nike Air Max 270 React...",
-      url: img2,
-      price: 199,
-    },
-    {
-      id: 3,
-      title: "Blue Swade Nike Sneakers",
-      url: img3,
-      price: 299,
-    },
-    {
-      id: 4,
-      title: "Blue Swade Nike Sneakers",
-      url: img1,
-      price: 399,
-    },
-    {
-      id: 5,
-      title: "FS - QUILTED MAXI CROSS BAG",
-      url: img1,
-      price: 499,
-    },
-  ];
+  const { data } = useGetProductsQuery({ params: "?limit=20", path: "" });
 
   return (
     <section className="featured">
@@ -55,7 +24,7 @@ const Featured = () => {
           spaceBetween={10}
           loop={true}
           autoplay={{
-            delay: 2500,
+            delay: 2000,
             disableOnInteraction: false,
           }}
           // pagination={{
@@ -86,12 +55,16 @@ const Featured = () => {
           modules={[Autoplay]}
           className="mySwiper"
         >
-          {item?.map((el) => (
+          {data?.map((el) => (
             <SwiperSlide key={el.id}>
               <div className="featured__card">
-                <Image alt="Buts" width={154} height={154} src={el.url} />
+                <Link href={`/product/${el.id}`}>
+                  <Image alt="Buts" width={154} height={154} src={el.image} />
+                </Link>
                 <div className="text">
-                  <h4>{el.title}</h4>
+                  <h4 title={el.title} className="ell">
+                    {el.title}
+                  </h4>
                   <Image alt="Star" width={"100%"} height={"100%"} src={star} />
                   <div className="price">
                     <h3>${el.price}</h3>
