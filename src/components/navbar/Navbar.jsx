@@ -19,20 +19,28 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const pathname = usePathname();
-  // const [shrink, setShrink] = useState(false);
+  const [shrink, setShrink] = useState(false);
   const wishes = useSelector((s) => s.heart.value);
   const cart = useSelector((s) => s.cart.value);
   const token = useSelector((state) => state.token.value);
 
-  // useEffect(() => {
-  //   window.addEventListener("scroll", () => {
-  //     if (window.scrollY >= 70.19) {
-  //       setShrink(true);
-  //     } else {
-  //       setShrink(false);
-  //     }
-  //   });
-  // }, [window.scrollY]);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 70.19) {
+        setShrink(true);
+      } else {
+        setShrink(false);
+      }
+    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
 
   const navItems = [
     {
@@ -76,7 +84,7 @@ const Navbar = () => {
     </li>
   ));
   return (
-    <section className="header">
+    <section className={`header  ${shrink ? "show" : ""}`}>
       <div className={`top__navbar`}>
         <div className="container">
           <div className="header__top">
@@ -110,8 +118,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {/* ${shrink ? "show" : ""} */}
-      <div className={`fixed `}>
+      <div className={`fixed  ${shrink ? "show" : ""} `}>
         <div className="container ">
           <nav className={`nav  `}>
             <Link href={"/"}>

@@ -209,8 +209,15 @@
       justify-content: center;
       align-items: center;
       gap: 40px;
+      width: 100%;
       .vaucher {
-        max-width: 380px;
+        width: 100% !important;
+        input {
+          height: 40px;
+        }
+        button {
+          height: 43.8px;
+        }
       }
     }
     .cart__wrapper {

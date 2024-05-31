@@ -7,6 +7,9 @@
   left: 0;
   width: 100%;
   z-index: 101;
+  &.show {
+    margin-bottom: 65.6px;
+  }
   .top__navbar {
     border-bottom: 1px solid #eee;
     .header__top {

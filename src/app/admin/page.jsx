@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { setToken } from "@/lib/features/token/tokenSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Admin = () => {
   const dispatch = useDispatch();
