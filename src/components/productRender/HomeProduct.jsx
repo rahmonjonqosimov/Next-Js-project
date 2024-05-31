@@ -12,7 +12,7 @@ const HomeProduct = () => {
   const productCategory = useSelector((s) => s.category.value);
   const { data: category } = useGetProductsCategoryQuery("/categories");
   const { data, isLoading } = useGetProductsQuery({
-    params: `?limit=${productLimit * 4}`,
+    params: `?limit=${productLimit * 8}`,
     path: productCategory !== "all" ? `/category/${productCategory}` : "",
   });
   return (

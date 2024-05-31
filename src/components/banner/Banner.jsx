@@ -1,8 +1,10 @@
-import React, { memo } from "react";
+"use client";
+import React, { memo, useState } from "react";
 import bannerImage from "@/assets/images/banner image.png";
 import Image from "next/image";
 
 const Banner = () => {
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <section className="banner">
       <div className="container">
@@ -19,6 +21,9 @@ const Banner = () => {
             width={600}
             height={600}
             src={bannerImage}
+            className={`${isLoading ? "img_loading" : "img_loading_disabled"}`}
+            onLoadingComplete={() => setIsLoading(false)}
+            priority={true}
           />
         </div>
       </div>

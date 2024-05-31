@@ -9,6 +9,7 @@
     .banners__card {
       width: 100%;
       position: relative;
+      transition: 0.2s;
       .banner__outline {
         position: absolute;
         width: 100%;
@@ -24,13 +25,9 @@
           background: #0005;
           opacity: 0.2;
         }
-        animation: anim 0.3s ease-in 0s forwards;
+        transform: scale(1.04);
       }
-      @keyframes anim {
-        to {
-          transform: scale(1.04);
-        }
-      }
+
       .banner__item__text {
         position: absolute;
         width: 100%;
@@ -87,8 +84,8 @@
         }
       }
       img {
-        width: 100%;
         object-fit: contain;
+        width: 100%;
       }
     }
   }

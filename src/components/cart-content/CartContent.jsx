@@ -14,8 +14,10 @@ import { toggleHeart } from "@/lib/features/heart/heartSlice";
 import Checkout from "../checkout/Checkout";
 import EmptyCart from "../empty-cart/EmptyCart";
 import img from "@/assets/images/basket_no_page.webp";
+import Link from "next/link";
 
 const CartContent = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [checkout, setCheckout] = useState(false);
 
   const dispatch = useDispatch();
@@ -79,7 +81,15 @@ const CartContent = () => {
           <button onClick={() => removeCart(el)}>
             <IoCloseOutline />
           </button>
-          <Image alt={el.title} width={140} height={94} src={el.image} />
+          <Image
+            className={`${isLoading ? "img_loading" : "img_loading_disabled"}`}
+            onLoadingComplete={() => setIsLoading(false)}
+            priority={true}
+            alt={el.title}
+            width={140}
+            height={94}
+            src={el.image}
+          />
           <h4 title={el.title}>{el.title}</h4>
         </div>
         <div className="price">${Math.round(el.price) * el.quantity}</div>
@@ -124,6 +134,14 @@ const CartContent = () => {
   }, [checkout]);
   return (
     <>
+      <div className="path">
+        <div className="url">
+          <Link href={"/"}>Home / </Link>
+          <Link style={{ color: "#262626" }} href={"/cart"}>
+            Cart
+          </Link>
+        </div>
+      </div>
       {cart.length ? (
         <div className="cart">
           <div className="container">

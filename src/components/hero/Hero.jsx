@@ -1,6 +1,7 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 
 const Hero = () => {
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <section className="home__hero">
       <div className="container">

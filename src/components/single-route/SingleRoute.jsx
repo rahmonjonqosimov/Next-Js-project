@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, memo } from "react";
+import React, { useEffect, memo, useState } from "react";
 import star from "@/assets/images/star.svg";
 import color1 from "@/assets/images/color-1.svg";
 import color2 from "@/assets/images/color-2.svg";
@@ -19,9 +19,12 @@ import {
   removeFromCart,
 } from "@/lib/features/cart/cartSlice";
 import SingleRouteLoading from "../loading/SingleRouteLoading";
+import Loading from "../loading";
+import { toast } from "react-toastify";
 
 const SingleRoute = ({ id }) => {
   const { data, isLoading } = useGetProductDetailQuery(id);
+  const [loader, setLoader] = useState(true);
   // WISHES //////////////////////////
   let wishlist = useSelector((state) => state.heart.value);
   const dispatch = useDispatch();
@@ -96,7 +99,10 @@ const SingleRoute = ({ id }) => {
         </div>
 
         {isLoading ? (
-          <SingleRouteLoading />
+          <>
+            <Loading />
+            <SingleRouteLoading />
+          </>
         ) : (
           <div className="container">
             <div className="detail__content">
@@ -109,6 +115,11 @@ const SingleRoute = ({ id }) => {
                         width={375}
                         height={270}
                         src={data?.image}
+                        className={`${
+                          loader ? "img_loading" : "img_loading_disabled"
+                        }`}
+                        onLoadingComplete={() => setLoader(false)}
+                        priority={true}
                       />
                     </div>
                     <div className="images__wrapper">
@@ -121,6 +132,11 @@ const SingleRoute = ({ id }) => {
                               width={70}
                               height={70}
                               src={data?.image}
+                              className={`${
+                                loader ? "img_loading" : "img_loading_disabled"
+                              }`}
+                              onLoadingComplete={() => setLoader(false)}
+                              priority={true}
                             />
                           </div>
                         ))}
@@ -225,7 +241,21 @@ const SingleRoute = ({ id }) => {
                             <IoCartOutline /> Remove From Cart
                           </button>
                         ) : (
-                          <button onClick={() => handleCart(data)}>
+                          <button
+                            onClick={() => {
+                              handleCart(data),
+                                toast({
+                                  position: "top",
+                                  title: `Tovar savatda`,
+                                  status: "success",
+                                  isClosable: true,
+                                  description: `${data?.title.substring(
+                                    0,
+                                    25
+                                  )}...`,
+                                });
+                            }}
+                          >
                             <IoCartOutline /> Add To Cart
                           </button>
                         )}
@@ -291,12 +321,17 @@ const SingleRoute = ({ id }) => {
                       width={280}
                       height={240}
                       src={data?.image}
+                      className={`${
+                        loader ? "img_loading" : "img_loading_disabled"
+                      }`}
+                      onLoadingComplete={() => setLoader(false)}
+                      priority={true}
                     />
                   </div>
                   <Image alt="Star" width={"100%"} height={"100%"} src={star} />
                   <div className="price__pro">
-                    <h4>{data?.price}</h4>
-                    <span>{Math.round(data?.price * 1.24)}</span>
+                    <h4>${data?.price}</h4>
+                    <span>${Math.round(data?.price * 1.24)}</span>
                   </div>
                 </div>
               </div>

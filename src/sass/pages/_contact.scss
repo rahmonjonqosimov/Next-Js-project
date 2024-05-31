@@ -1,0 +1,20 @@
+.path {
+  background: #f6f7f8;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 40px;
+  .url {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    a {
+      font-family: Poppins;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 21.92px;
+      text-align: left;
+      color: #33a0ff;
+    }
+  }
+}

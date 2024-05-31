@@ -27,12 +27,7 @@ const Checkout = ({ setCheckout, data }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      user.address.trim() &&
-      user.fname.trim() &&
-      // user.lname.trim() &&
-      user.tel.trim()
-    ) {
+    if (user.address.trim() && user.fname.trim() && user.tel.trim()) {
       let text = "User %0A%0A";
       text += `Fisrt Name: ${user.fname} %0A`;
       text += `Last Name: ${user.lname} %0A`;

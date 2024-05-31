@@ -1,16 +1,29 @@
-import React, { memo } from "react";
+"use client";
+import React, { memo, useState } from "react";
 import img1 from "@/assets/images/home-banner-1.png";
 import img2 from "@/assets/images/home-banner-2.png";
 import img3 from "@/assets/images/home-banner-3.png";
 import Image from "next/image";
 
 const Banners = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <div className="banners">
       <div className="container">
         <div className="banners__wrapper">
           <div className="banners__card">
-            <Image alt="Banner-image" width={417} height={358} src={img1} />
+            <Image
+              alt="Banner-image"
+              width={417}
+              height={358}
+              src={img1}
+              className={`${
+                isLoading ? "img_loading" : "img_loading_disabled"
+              }`}
+              onLoadingComplete={() => setIsLoading(false)}
+              priority={true}
+            />
             <div className="banner__outline"></div>
             <div className="banner__item__text">
               <h4 className="banner__item__title">
@@ -24,7 +37,17 @@ const Banners = () => {
             </div>
           </div>
           <div className="banners__card">
-            <Image alt="Banner-image" width={417} height={358} src={img2} />
+            <Image
+              alt="Banner-image"
+              width={417}
+              height={358}
+              src={img2}
+              className={`${
+                isLoading ? "img_loading" : "img_loading_disabled"
+              }`}
+              onLoadingComplete={() => setIsLoading(false)}
+              priority={true}
+            />
             <div className="banner__outline"></div>
             <div className="banner__item__text">
               <h4 className="banner__item__title">
@@ -38,7 +61,17 @@ const Banners = () => {
             </div>
           </div>
           <div className="banners__card">
-            <Image alt="Banner-image" width={417} height={358} src={img3} />
+            <Image
+              alt="Banner-image"
+              width={417}
+              height={358}
+              src={img3}
+              className={`${
+                isLoading ? "img_loading" : "img_loading_disabled"
+              }`}
+              onLoadingComplete={() => setIsLoading(false)}
+              priority={true}
+            />
             <div className="banner__outline"></div>
             <div className="banner__item__text">
               <h4 className="banner__item__title">
