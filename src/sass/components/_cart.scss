@@ -328,6 +328,141 @@
       }
     }
   }
+  @media screen and (max-width: 400px) {
+    .cart__path {
+      display: none;
+    }
+    .hr {
+      margin: 0;
+      display: none;
+    }
+    .check {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      width: 100%;
+      .vaucher {
+        width: 100% !important;
+        input {
+          height: 40px;
+        }
+        button {
+          height: 43.8px;
+        }
+      }
+    }
+    .cart__wrapper {
+      padding: 16px;
+      border: 1px solid #f1f3f4;
+      border-radius: 6px;
+      grid-template-columns: 1fr 5fr;
+      margin-bottom: 20px;
+      gap: 20px;
+      .products__item {
+        margin: 0;
+        img {
+          width: 80px;
+          height: 80px;
+        }
+        button,
+        h4 {
+          display: none;
+        }
+      }
+      .price {
+        display: none;
+      }
+      .unit__price {
+        display: none;
+      }
+      .media {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+      .media__cart {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
+        h4 {
+          //styleName: Heading/H6;
+          font-family: Poppins;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 18px;
+          letter-spacing: 0.5px;
+          text-align: left;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          height: 36px;
+        }
+        .buttons {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+        button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          svg {
+            color: #9098b1;
+            font-size: 24px;
+          }
+        }
+      }
+      .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .narx {
+          display: block; //styleName: Heading/H6;
+          font-family: Poppins;
+          font-size: 15px;
+          font-weight: 700;
+          line-height: 18px;
+          letter-spacing: 0.5px;
+          text-align: left;
+          color: #33a0ff;
+        }
+        .qty {
+          height: 30px;
+          background-color: #fff;
+          border: 1px solid #ebf0ff;
+          border-radius: 6px;
+          width: 110px;
+          span {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    .check {
+      .vaucher {
+        display: none;
+      }
+      p {
+        font-size: 14px;
+        //styleName: Body Text/NormalRegular;
+        font-family: Poppins;
+        font-size: 12px !important;
+        font-weight: 400;
+        line-height: 21.6px;
+        letter-spacing: 0.5px;
+        text-align: left;
+        color: #9098b1 !important;
+      }
+      h3 {
+        font-size: 24px !important;
+        margin-bottom: 12px;
+      }
+    }
+  }
 }
 
 .cart__owerley {
